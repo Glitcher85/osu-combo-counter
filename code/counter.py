@@ -41,7 +41,9 @@ class Counter():
         start_date = datetime.datetime.now()
         while limit:
             key = read_key()
-            if self.first_key or self.second_key == key: limit -= 1
+            if self.first_key == key or self.second_key == key:
+                limit -=1
+                time.sleep(0.2)
         end_date = datetime.datetime.now()
         duration_in_seconds = str(end_date.second - start_date.second)
         duration_in_minutes = str(end_date.minute - start_date.minute)
@@ -67,6 +69,3 @@ class Counter():
 if __name__ == "__main__":
     application = Counter()
     application.run()
-        
-            
-        
