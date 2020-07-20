@@ -43,18 +43,11 @@ class Counter():
             key = read_key()
             if self.first_key == key or self.second_key == key:
                 limit -=1
-                time.sleep(0.2)
+                time.sleep(0.05)
         end_date = datetime.datetime.now()
-        duration_in_seconds = str(end_date.second - start_date.second)
-        duration_in_minutes = str(end_date.minute - start_date.minute)
-        if duration_in_seconds.startswith("-"):
-            print(f"Your stream lasted {end_date.minute - start_date.minute} minutes and {end_date.second - start_date.second + 60} seconds.")
-        elif duration_in_minutes.startswith("-"):
-            print(f"Your stream lasted {end_date.minute - start_date.minute + 60} minutes and {end_date.second - start_date.second} seconds.")
-        elif duration_in_minutes.startswith("-") and duration_in_seconds.startswith("-"):
-            print(f"Your stream lasted {end_date.minute - start_date.minute + 60} minutes and {end_date.second - start_date.second + 60} seconds.")
-        else:
-            print(f"Your stream lasted {end_date.minute - start_date.minute} minutes and {end_date.second - start_date.second} seconds.")
+        start_date = start_date.hour*3600 + start_date.minute*60 + start_date.second; end_date = end_date.hour*3600 + end_date.minute*60 + end_date.second
+        delta_time = end_date - start_date; delta_time_minute = delta_time // 60; delta_time_second = delta_time % 60
+        print(f"Your stream lasted {delta_time_minute} minutes and {delta_time_second} seconds.")
         time.sleep(3); input("|| Press [ENTER] to proceed forward ||"); os.system("cls")
         restart_consent = input("Do you want to restart?(y/n)\n>")
         if restart_consent == "y" or restart_consent == "yes":
@@ -69,3 +62,6 @@ class Counter():
 if __name__ == "__main__":
     application = Counter()
     application.run()
+        
+            
+        
